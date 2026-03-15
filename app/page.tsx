@@ -45,6 +45,12 @@ export default function Home() {
           >
             {t("motto")}
           </p>
+          <span
+            className="animate-slide-up inline-block rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs sm:text-sm tracking-wider text-primary"
+            style={{ animationDelay: "0.7s" }}
+          >
+            {t("comingSoon")}
+          </span>
         </div>
       </main>
     </div>
