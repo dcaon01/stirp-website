@@ -5,41 +5,43 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.809 0.105 251.813);
-  --chart-2: oklch(0.623 0.214 259.815);
-  --chart-3: oklch(0.546 0.245 262.881);
-  --chart-4: oklch(0.488 0.243 264.376);
-  --chart-5: oklch(0.424 0.199 265.638);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --background: oklch(1.00 0 0);
+  --foreground: oklch(0 0 0);
+  --card: oklch(1.00 0 0);
+  --card-foreground: oklch(0 0 0);
+  --popover: oklch(1.00 0 0);
+  --popover-foreground: oklch(0 0 0);
+  --primary: oklch(0.50 0.20 356.81);
+  --primary-foreground: oklch(1.00 0 0);
+  --secondary: oklch(0.95 0.03 358.08);
+  --secondary-foreground: oklch(0 0 0);
+  --muted: oklch(0.95 0.02 355.32);
+  --muted-foreground: oklch(0.55 0.03 357.06);
+  --accent: oklch(0.92 0.04 356.47);
+  --accent-foreground: oklch(0.15 0.01 356.53);
+  --destructive: oklch(0.72 0.18 22.51);
+  --border: oklch(0.88 0.04 356.54);
+  --input: oklch(0.88 0.04 356.54);
+  --ring: oklch(0.50 0.20 356.81);
+  --chart-1: oklch(0.71 0.16 356.37);
+  --chart-2: oklch(0.61 0.22 356.58);
+  --chart-3: oklch(0.50 0.20 356.81);
+  --chart-4: oklch(0.42 0.17 356.64);
+  --chart-5: oklch(0.33 0.14 356.89);
+  --sidebar: oklch(0.97 0.01 355.10);
+  --sidebar-foreground: oklch(0.15 0.01 356.53);
+  --sidebar-primary: oklch(0.50 0.20 356.81);
+  --sidebar-primary-foreground: oklch(1.00 0 0);
+  --sidebar-accent: oklch(0.92 0.04 356.47);
+  --sidebar-accent-foreground: oklch(0.15 0.01 356.53);
+  --sidebar-border: oklch(0.88 0.04 356.54);
+  --sidebar-ring: oklch(0.50 0.20 356.81);
 
   --font-sans: 'Michroma', sans-serif;
   --font-serif: Source Serif 4, serif;
   --font-mono: IBM Plex Mono, monospace;
 
-  --radius: 0.625rem;
+  --radius: 1.5rem;
 
   --shadow-2xs: 0px 8px 16px -4px oklch(0.00 0 0 / 0.04);
   --shadow-xs: 0px 8px 16px -4px oklch(0.00 0 0 / 0.04);
@@ -49,42 +51,40 @@
   --shadow-lg: 0px 8px 16px -4px oklch(0.00 0 0 / 0.08), 0px 4px 6px -5px oklch(0.00 0 0 / 0.08);
   --shadow-xl: 0px 8px 16px -4px oklch(0.00 0 0 / 0.08), 0px 8px 10px -5px oklch(0.00 0 0 / 0.08);
   --shadow-2xl: 0px 8px 16px -4px oklch(0.00 0 0 / 0.20);
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.809 0.105 251.813);
-  --chart-2: oklch(0.623 0.214 259.815);
-  --chart-3: oklch(0.546 0.245 262.881);
-  --chart-4: oklch(0.488 0.243 264.376);
-  --chart-5: oklch(0.424 0.199 265.638);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --background: oklch(0.13 0.01 356.5);
+  --foreground: oklch(0.95 0.01 356.5);
+  --card: oklch(0.17 0.02 356.5);
+  --card-foreground: oklch(0.95 0.01 356.5);
+  --popover: oklch(0.15 0.01 356.5);
+  --popover-foreground: oklch(0.95 0.01 356.5);
+  --primary: oklch(0.60 0.20 356.81);
+  --primary-foreground: oklch(0.10 0.01 356.5);
+  --secondary: oklch(0.22 0.04 356.5);
+  --secondary-foreground: oklch(0.95 0.01 356.5);
+  --muted: oklch(0.20 0.03 356.5);
+  --muted-foreground: oklch(0.60 0.03 356.5);
+  --accent: oklch(0.25 0.05 356.5);
+  --accent-foreground: oklch(0.95 0.01 356.5);
+  --destructive: oklch(0.55 0.22 22.51);
+  --border: oklch(0.28 0.04 356.5);
+  --input: oklch(0.28 0.04 356.5);
+  --ring: oklch(0.60 0.20 356.81);
+  --chart-1: oklch(0.71 0.16 356.37);
+  --chart-2: oklch(0.61 0.22 356.58);
+  --chart-3: oklch(0.55 0.20 356.81);
+  --chart-4: oklch(0.48 0.17 356.64);
+  --chart-5: oklch(0.40 0.14 356.89);
+  --sidebar: oklch(0.15 0.02 356.5);
+  --sidebar-foreground: oklch(0.90 0.01 356.5);
+  --sidebar-primary: oklch(0.60 0.20 356.81);
+  --sidebar-primary-foreground: oklch(0.10 0.01 356.5);
+  --sidebar-accent: oklch(0.25 0.05 356.5);
+  --sidebar-accent-foreground: oklch(0.90 0.01 356.5);
+  --sidebar-border: oklch(0.28 0.04 356.5);
+  --sidebar-ring: oklch(0.60 0.20 356.81);
 
   --shadow-2xs: 0px 8px 16px -4px oklch(0.00 0 0 / 0.30);
   --shadow-xs: 0px 8px 16px -4px oklch(0.00 0 0 / 0.30);
@@ -148,4 +148,34 @@
   html {
     @apply font-sans;
   }
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-slide-down {
+  animation: slide-down 0.8s ease-out both;
+}
+
+.animate-fade-scale-in {
+  animation: fade-scale-in 1s ease-out both;
 }
