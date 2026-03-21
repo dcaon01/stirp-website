@@ -24,11 +24,12 @@ export function WaitlistDialog({
   const canSubmit = valid && accepted;
 
   useEffect(() => {
-    if (open) {
+    if (!open) return;
+    requestAnimationFrame(() => {
       setEmail("");
       setAccepted(false);
       setStatus("idle");
-    }
+    });
   }, [open]);
 
   useEffect(() => {
@@ -39,8 +40,6 @@ export function WaitlistDialog({
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
   }, [open, onClose]);
-
-  if (!open) return null;
 
   async function handleSubmit() {
     if (!canSubmit) return;
@@ -60,6 +59,8 @@ export function WaitlistDialog({
       setStatus("error");
     }
   }
+
+  if (!open) return null;
 
   return (
     <div
