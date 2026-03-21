@@ -1,8 +1,48 @@
 {
-  "home": {
+  "nav": {
+    "login": "Accedi",
+    "register": "Registrati",
+    "pricing": "Prezzi",
+    "home": "Home"
+  },
+  "hero": {
+    "title": "Il software design, alle tue regole",
+    "subtitle": "Crea modelli personalizzati, definisci il tuo stile, imposta le tue regole. STIRP si adatta a te.",
+    "comingSoon": "In arrivo",
+    "watchVideo": "Guarda il demo"
+  },
+  "pricing": {
+    "title": "Prezzi",
+    "subtitle": "Scegli il piano più adatto alle tue esigenze",
+    "free": {
+      "name": "Free",
+      "price": "0",
+      "period": "/mese",
+      "features": [
+        "Progetti illimitati",
+        "Creazione modelli custom",
+        "Accesso alla community",
+        "Pubblicità incluse"
+      ],
+      "cta": "Inizia ora"
+    },
+    "premium": {
+      "name": "Premium",
+      "price": "TBD",
+      "period": "/mese",
+      "features": [
+        "Tutto del piano Free",
+        "Assistente AI",
+        "Workspaces",
+        "Ambienti collaborativi",
+        "Condivisione modelli",
+        "Nessuna pubblicità"
+      ],
+      "cta": "In arrivo"
+    }
+  },
+  "footer": {
     "email": "info@stirp.it",
-    "language": "Lingua",
-    "motto": "Il software design, alle tue regole",
-    "comingSoon": "In arrivo"
+    "rights": "Tutti i diritti riservati."
   }
 }

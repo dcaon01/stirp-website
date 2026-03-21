@@ -1,7 +1,7 @@
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
 import { Comfortaa } from "next/font/google";
-import { VantaBackground } from "@/components/vanta-background";
+
 import "./globals.css";
 
 const comfortaa = Comfortaa({
@@ -33,7 +33,6 @@ export default async function RootLayout({
   return (
     <html lang={locale} className={`dark ${comfortaa.variable}`}>
       <body className="antialiased">
-        <VantaBackground />
         <NextIntlClientProvider messages={messages}>
           {children}
         </NextIntlClientProvider>

@@ -1,58 +1,66 @@
-import Image from "next/image";
+"use client";
+
 import { useTranslations } from "next-intl";
-import { LanguageSwitcher } from "@/components/language-switcher";
+import { Navbar } from "@/components/navbar";
+import { PricingSection } from "@/components/pricing-section";
+
+import { VantaBackground } from "@/components/vanta-background";
 
 export default function Home() {
-  const t = useTranslations("home");
+  const t = useTranslations("hero");
+  const tf = useTranslations("footer");
 
   return (
-    <div className="relative flex h-screen flex-col overflow-hidden">
-      <header className="animate-slide-down flex items-center justify-between px-4 py-4 sm:px-8 sm:py-6">
-        <a
-          href={`mailto:${t("email")}`}
-          className="text-xs sm:text-sm tracking-wider text-muted-foreground transition-colors hover:text-primary"
-        >
-          {t("email")}
-        </a>
-        <LanguageSwitcher />
-      </header>
+    <div className="relative min-h-screen">
+      <Navbar />
 
-      <main className="flex flex-1 items-center justify-center -mt-12 sm:-mt-16">
-        <div className="flex flex-col items-center gap-5 sm:gap-8">
-          <div
-            className="animate-slide-down flex flex-col items-center gap-5 sm:gap-8"
-            style={{ animationDelay: "0.2s" }}
-          >
-            <Image
-              src="/stirp-logo-dark.svg"
-              alt="STIRP Logo"
-              width={120}
-              height={230}
-              className="w-20 h-auto sm:w-30"
-              priority
-            />
-            <Image
-              src="/stirp-root.svg"
-              alt="STIRP"
-              width={181}
-              height={105}
-              className="invert w-32.5 h-auto sm:w-45.25"
-            />
+      {/* Hero with Vanta */}
+      <section className="relative flex min-h-screen items-center px-6 pt-20 sm:px-10">
+        <VantaBackground />
+        <div className="mx-auto grid w-full max-w-6xl gap-10 lg:grid-cols-2 lg:gap-12 items-center">
+          <div className="animate-slide-down flex flex-col gap-6">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight">
+              {t("title")}
+            </h1>
+            <p className="text-base sm:text-lg text-muted-foreground tracking-wide leading-relaxed">
+              {t("subtitle")}
+            </p>
+            <span
+              className="animate-slide-up inline-block w-fit rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs sm:text-sm tracking-wider text-primary"
+              style={{ animationDelay: "0.5s" }}
+            >
+              {t("comingSoon")}
+            </span>
           </div>
-          <p
-            className="animate-slide-up text-sm sm:text-lg tracking-widest text-muted-foreground"
-            style={{ animationDelay: "0.5s" }}
+
+          <div
+            className="animate-slide-up flex items-center justify-center"
+            style={{ animationDelay: "0.3s" }}
           >
-            {t("motto")}
-          </p>
-          <span
-            className="animate-slide-up inline-block rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs sm:text-sm tracking-wider text-primary"
-            style={{ animationDelay: "0.7s" }}
-          >
-            {t("comingSoon")}
-          </span>
+            <div className="relative w-full aspect-video rounded-2xl border border-border/50 overflow-hidden">
+              {/* Video placeholder */}
+            </div>
+          </div>
         </div>
-      </main>
+      </section>
+
+      {/* Pricing */}
+      <PricingSection />
+
+      {/* Footer */}
+      <footer className="border-t border-border bg-background px-6 py-8 sm:px-10">
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 sm:flex-row">
+          <a
+            href={`mailto:${tf("email")}`}
+            className="cursor-pointer text-sm text-muted-foreground tracking-wider transition-colors hover:text-primary"
+          >
+            {tf("email")}
+          </a>
+          <p className="text-sm text-muted-foreground tracking-wider">
+            &copy; {new Date().getFullYear()} STIRP. {tf("rights")}
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }

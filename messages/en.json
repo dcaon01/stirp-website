@@ -1,8 +1,48 @@
 {
-  "home": {
+  "nav": {
+    "login": "Login",
+    "register": "Register",
+    "pricing": "Pricing",
+    "home": "Home"
+  },
+  "hero": {
+    "title": "Software design, at your rules",
+    "subtitle": "Create custom models, define your style, set your own rules. STIRP adapts to you.",
+    "comingSoon": "Coming Soon",
+    "watchVideo": "Watch demo"
+  },
+  "pricing": {
+    "title": "Pricing",
+    "subtitle": "Choose the plan that fits your needs",
+    "free": {
+      "name": "Free",
+      "price": "0",
+      "period": "/month",
+      "features": [
+        "Unlimited projects",
+        "Custom model creation",
+        "Community access",
+        "Ads included"
+      ],
+      "cta": "Get Started"
+    },
+    "premium": {
+      "name": "Premium",
+      "price": "TBD",
+      "period": "/month",
+      "features": [
+        "Everything in Free",
+        "AI Assistant",
+        "Workspaces",
+        "Collaborative environments",
+        "Model sharing",
+        "No ads"
+      ],
+      "cta": "Coming Soon"
+    }
+  },
+  "footer": {
     "email": "info@stirp.it",
-    "language": "Language",
-    "motto": "Software design, at your rules",
-    "comingSoon": "Coming Soon"
+    "rights": "All rights reserved."
   }
 }
