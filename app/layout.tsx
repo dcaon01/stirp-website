@@ -9,9 +9,60 @@ const comfortaa = Comfortaa({
   variable: "--font-comfortaa",
 });
 
-export const metadata = {
-  title: "STIRP",
-  description: "STIRP - Official Website",
+import type { Metadata } from "next";
+
+const siteUrl = "https://stirp.it";
+
+export const metadata: Metadata = {
+  title: {
+    default: "STIRP — Software Design Tool",
+    template: "%s | STIRP",
+  },
+  description:
+    "STIRP is a software design tool for creating UML diagrams, ER diagrams, flowcharts, request-response diagrams, graph database schemas, and more. Design at your rules.",
+  keywords: [
+    "software design tool",
+    "UML diagram",
+    "ER diagram",
+    "flowchart",
+    "request response diagram",
+    "graph database diagram",
+    "software architecture",
+    "diagram maker",
+    "STIRP",
+    "strumento di progettazione software",
+    "diagramma UML",
+    "diagramma ER",
+    "diagramma di flusso",
+  ],
+  authors: [{ name: "STIRP" }],
+  creator: "STIRP",
+  metadataBase: new URL(siteUrl),
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    alternateLocale: "it_IT",
+    url: siteUrl,
+    siteName: "STIRP",
+    title: "STIRP — Software Design Tool",
+    description:
+      "Create UML diagrams, ER diagrams, flowcharts, and more. Design at your rules.",
+    images: [
+      {
+        url: "/strip-logo-png.png",
+        width: 512,
+        height: 512,
+        alt: "STIRP Logo",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary",
+    title: "STIRP — Software Design Tool",
+    description:
+      "Create UML diagrams, ER diagrams, flowcharts, and more. Design at your rules.",
+    images: ["/strip-logo-png.png"],
+  },
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -19,6 +70,10 @@ export const metadata = {
       { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
     ],
     apple: "/apple-touch-icon.png",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
