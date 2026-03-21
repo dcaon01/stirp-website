@@ -3,7 +3,6 @@
 import { useTranslations } from "next-intl";
 import { Navbar } from "@/components/navbar";
 import { PricingSection } from "@/components/pricing-section";
-
 import { VantaBackground } from "@/components/vanta-background";
 
 export default function Home() {
@@ -15,10 +14,10 @@ export default function Home() {
       <Navbar />
 
       {/* Hero with Vanta */}
-      <section className="relative flex min-h-screen items-center px-6 pt-20 sm:px-10">
+      <section className="relative flex min-h-screen items-center px-4 pt-20 sm:px-6">
         <VantaBackground />
-        <div className="mx-auto grid w-full max-w-6xl gap-10 lg:grid-cols-2 lg:gap-12 items-center">
-          <div className="animate-slide-down flex flex-col gap-6">
+        <div className="w-full max-w-6xl lg:mx-auto">
+          <div className="animate-slide-right flex flex-col gap-6 px-10">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight">
               {t("title")}
             </h1>
@@ -31,15 +30,6 @@ export default function Home() {
             >
               {t("comingSoon")}
             </span>
-          </div>
-
-          <div
-            className="animate-slide-up flex items-center justify-center"
-            style={{ animationDelay: "0.3s" }}
-          >
-            <div className="relative w-full aspect-video rounded-2xl border border-border/50 overflow-hidden">
-              {/* Video placeholder */}
-            </div>
           </div>
         </div>
       </section>

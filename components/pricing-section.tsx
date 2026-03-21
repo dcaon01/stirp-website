@@ -1,10 +1,28 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 
 export function PricingSection() {
   const t = useTranslations("pricing");
+  const sectionRef = useRef<HTMLElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    if (!sectionRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+    observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   const plans = [
     {
@@ -18,9 +36,19 @@ export function PricingSection() {
   ];
 
   return (
-    <section id="pricing" className="relative px-6 py-24 sm:px-10 bg-background">
+    <section
+      ref={sectionRef}
+      id="pricing"
+      className="relative px-6 pt-16 pb-56 sm:px-10 bg-background"
+    >
       <div className="mx-auto max-w-4xl">
-        <div className="mb-16 text-center">
+        <div
+          className={`mb-16 text-center transition-all duration-700 ${
+            visible
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-8"
+          }`}
+        >
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
             {t("title")}
           </h2>
@@ -30,16 +58,23 @@ export function PricingSection() {
         </div>
 
         <div className="grid gap-8 sm:grid-cols-2">
-          {plans.map((plan) => {
+          {plans.map((plan, index) => {
             const features = t.raw(`${plan.key}.features`) as string[];
             return (
               <div
                 key={plan.key}
-                className={`relative rounded-2xl border p-8 transition-all ${
+                className={`relative rounded-2xl border p-8 transition-all duration-700 ${
+                  visible
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-12"
+                } ${
                   plan.highlighted
                     ? "border-primary/50 bg-primary/5"
                     : "border-border bg-card/50"
                 }`}
+                style={{
+                  transitionDelay: visible ? `${(index + 1) * 150}ms` : "0ms",
+                }}
               >
                 <h3 className="text-xl font-bold tracking-wide">
                   {t(`${plan.key}.name`)}
@@ -82,7 +117,7 @@ export function PricingSection() {
                 <div className="mt-8">
                   <Button
                     variant={plan.highlighted ? "default" : "outline"}
-                    className="w-full"
+                    className="w-full cursor-pointer"
                   >
                     {t(`${plan.key}.cta`)}
                   </Button>

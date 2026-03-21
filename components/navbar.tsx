@@ -17,7 +17,7 @@ export function Navbar() {
           alt="STIRP"
           width={32}
           height={32}
-          className="w-7 h-auto sm:w-8"
+          className="w-5 h-auto sm:w-6"
         />
         <Image
           src="/stirp-root.svg"
