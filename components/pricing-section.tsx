@@ -25,23 +25,18 @@ export function PricingSection() {
   }, []);
 
   const plans = [
-    {
-      key: "free" as const,
-      highlighted: false,
-    },
-    {
-      key: "premium" as const,
-      highlighted: true,
-    },
+    { key: "free" as const, highlighted: false },
+    { key: "premiumMonthly" as const, highlighted: false },
+    { key: "premiumAnnual" as const, highlighted: true },
   ];
 
   return (
     <section
       ref={sectionRef}
       id="pricing"
-      className="relative px-6 pt-16 pb-56 sm:px-10 bg-background"
+      className="relative px-6 pt-24 pb-56 sm:px-10 bg-background"
     >
-      <div className="mx-auto max-w-4xl">
+      <div className="mx-auto max-w-6xl">
         <div
           className={`mb-16 text-center transition-all duration-700 ${
             visible
@@ -57,9 +52,10 @@ export function PricingSection() {
           </p>
         </div>
 
-        <div className="grid gap-8 sm:grid-cols-2">
+        <div className="grid gap-8 sm:grid-cols-3">
           {plans.map((plan, index) => {
             const features = t.raw(`${plan.key}.features`) as string[];
+            const hasBadge = plan.key !== "free";
             return (
               <div
                 key={plan.key}
@@ -76,6 +72,11 @@ export function PricingSection() {
                   transitionDelay: visible ? `${(index + 1) * 150}ms` : "0ms",
                 }}
               >
+                {hasBadge && (
+                  <span className="absolute -top-3 left-6 rounded-full bg-primary px-3 py-0.5 text-xs font-medium text-primary-foreground tracking-wider">
+                    {t(`${plan.key}.badge`)}
+                  </span>
+                )}
                 <h3 className="text-xl font-bold tracking-wide">
                   {t(`${plan.key}.name`)}
                 </h3>

@@ -7,9 +7,11 @@ export function VantaBackground() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const effectRef = useRef<any>(null);
 
-  const getColor = useCallback(() => {
+  const getColors = useCallback(() => {
     const isDark = document.documentElement.classList.contains("dark");
-    return isDark ? 0x1a0505 : 0xf5f0f0;
+    return isDark
+      ? { color: 0x1a0505, shininess: 35, waveHeight: 15 }
+      : { color: 0xc8b5b5, shininess: 80, waveHeight: 20 };
   }, []);
 
   const cleanup = useCallback(() => {
@@ -55,9 +57,9 @@ export function VantaBackground() {
         minWidth: 200.0,
         scale: 1.0,
         scaleMobile: 1.0,
-        color: getColor(),
-        shininess: 35.0,
-        waveHeight: 15.0,
+        color: getColors().color,
+        shininess: getColors().shininess,
+        waveHeight: getColors().waveHeight,
         waveSpeed: 0.75,
         zoom: 0.85,
       });
@@ -65,10 +67,10 @@ export function VantaBackground() {
 
     init();
 
-    // Watch for theme changes
     const observer = new MutationObserver(() => {
       if (effectRef.current) {
-        effectRef.current.setOptions({ color: getColor() });
+        const c = getColors();
+        effectRef.current.setOptions({ color: c.color, shininess: c.shininess, waveHeight: c.waveHeight });
       }
     });
     observer.observe(document.documentElement, {
@@ -76,29 +78,12 @@ export function VantaBackground() {
       attributeFilter: ["class"],
     });
 
-    // Fade out on scroll
-    function handleScroll() {
-      if (!vantaRef.current) return;
-      const scrollY = window.scrollY;
-      const vh = window.innerHeight;
-      const opacity = Math.max(0, 1 - scrollY / (vh * 0.6));
-      vantaRef.current.style.opacity = String(opacity);
-    }
-    window.addEventListener("scroll", handleScroll, { passive: true });
-
     return () => {
       cancelled = true;
       observer.disconnect();
-      window.removeEventListener("scroll", handleScroll);
       cleanup();
     };
-  }, [cleanup, getColor]);
+  }, [cleanup, getColors]);
 
-  return (
-    <div
-      ref={vantaRef}
-      className="absolute inset-0 -z-10 transition-opacity duration-100"
-      style={{ height: "100vh" }}
-    />
-  );
+  return <div ref={vantaRef} className="absolute inset-0" />;
 }

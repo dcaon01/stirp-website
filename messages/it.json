@@ -26,10 +26,11 @@
       ],
       "cta": "Inizia ora"
     },
-    "premium": {
+    "premiumMonthly": {
       "name": "Premium",
       "price": "TBD",
       "period": "/mese",
+      "badge": "Mensile",
       "features": [
         "Tutto del piano Free",
         "Assistente AI",
@@ -37,6 +38,22 @@
         "Ambienti collaborativi",
         "Condivisione modelli",
         "Nessuna pubblicità"
+      ],
+      "cta": "In arrivo"
+    },
+    "premiumAnnual": {
+      "name": "Premium",
+      "price": "TBD",
+      "period": "/anno",
+      "badge": "Annuale",
+      "features": [
+        "Tutto del piano Free",
+        "Assistente AI",
+        "Workspaces",
+        "Ambienti collaborativi",
+        "Condivisione modelli",
+        "Nessuna pubblicità",
+        "Risparmia con fatturazione annuale"
       ],
       "cta": "In arrivo"
     }

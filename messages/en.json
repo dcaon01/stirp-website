@@ -26,10 +26,11 @@
       ],
       "cta": "Get Started"
     },
-    "premium": {
+    "premiumMonthly": {
       "name": "Premium",
       "price": "TBD",
       "period": "/month",
+      "badge": "Monthly",
       "features": [
         "Everything in Free",
         "AI Assistant",
@@ -37,6 +38,22 @@
         "Collaborative environments",
         "Model sharing",
         "No ads"
+      ],
+      "cta": "Coming Soon"
+    },
+    "premiumAnnual": {
+      "name": "Premium",
+      "price": "TBD",
+      "period": "/year",
+      "badge": "Annual",
+      "features": [
+        "Everything in Free",
+        "AI Assistant",
+        "Workspaces",
+        "Collaborative environments",
+        "Model sharing",
+        "No ads",
+        "Save with annual billing"
       ],
       "cta": "Coming Soon"
     }
