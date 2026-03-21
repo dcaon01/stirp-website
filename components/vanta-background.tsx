@@ -50,7 +50,7 @@ export function VantaBackground() {
         minWidth: 200.0,
         scale: 1.0,
         scaleMobile: 1.0,
-        color: 0x0a0003,
+        color: 0x1a0505,
         shininess: 35.0,
         waveHeight: 15.0,
         waveSpeed: 0.75,

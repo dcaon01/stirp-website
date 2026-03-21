@@ -24,7 +24,7 @@ export default function Home() {
             style={{ animationDelay: "0.2s" }}
           >
             <Image
-              src="/stirp-logo.svg"
+              src="/stirp-logo-dark.svg"
               alt="STIRP Logo"
               width={120}
               height={230}
@@ -32,7 +32,7 @@ export default function Home() {
               priority
             />
             <Image
-              src="/stirp-write.svg"
+              src="/stirp-root.svg"
               alt="STIRP"
               width={181}
               height={105}
