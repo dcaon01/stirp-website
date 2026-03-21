@@ -59,7 +59,7 @@ export function SettingsDropdown() {
         </svg>
       </button>
       {open && (
-        <div className="absolute right-0 top-full mt-2 w-48 rounded-xl border border-border bg-popover p-2 shadow-lg">
+        <div className="absolute right-0 top-full mt-2 w-48 rounded-xl border border-border bg-popover p-2 shadow-lg animate-scale-in origin-top-right">
           {/* Language */}
           <p className="px-2 py-1 text-xs text-muted-foreground tracking-wider uppercase">
             Language

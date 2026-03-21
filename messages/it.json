@@ -58,6 +58,61 @@
       "cta": "In arrivo"
     }
   },
+  "waitlist": {
+    "title": "Iscriviti alla lista d'attesa",
+    "description": "Lascia la tua email e ti avviseremo non appena STIRP sarà disponibile.",
+    "placeholder": "tua@email.com",
+    "privacy": "Ho letto e accetto la",
+    "privacyLink": "Privacy Policy",
+    "submit": "Iscriviti",
+    "sending": "Invio in corso...",
+    "successTitle": "Sei dentro!",
+    "successMessage": "Ti faremo sapere quando STIRP sarà pronto.",
+    "close": "Chiudi",
+    "error": "Qualcosa è andato storto. Riprova."
+  },
+  "privacy": {
+    "title": "Informativa sulla Privacy",
+    "lastUpdated": "Ultimo aggiornamento: Marzo 2026",
+    "sections": [
+      {
+        "title": "1. Titolare del Trattamento",
+        "content": "Il titolare del trattamento è STIRP, raggiungibile all'indirizzo info@stirp.it."
+      },
+      {
+        "title": "2. Dati Raccolti",
+        "content": "Raccogliamo esclusivamente l'indirizzo email che fornisci volontariamente al momento dell'iscrizione alla lista d'attesa."
+      },
+      {
+        "title": "3. Finalità del Trattamento",
+        "content": "Il tuo indirizzo email viene raccolto al solo scopo di notificarti quando STIRP sarà disponibile e per inviarti aggiornamenti relativi al lancio del servizio."
+      },
+      {
+        "title": "4. Base Giuridica",
+        "content": "Il trattamento dei tuoi dati si basa sul tuo consenso esplicito, prestato spuntando la casella di consenso e inviando il modulo di iscrizione alla lista d'attesa (Art. 6(1)(a) GDPR)."
+      },
+      {
+        "title": "5. Conservazione dei Dati",
+        "content": "I tuoi dati sono conservati in Google Sheets, ospitato sui server di Google. Google opera in conformità alle Clausole Contrattuali Standard (SCC) per i trasferimenti internazionali di dati. Nessun dato viene condiviso con terze parti."
+      },
+      {
+        "title": "6. Durata della Conservazione",
+        "content": "La tua email sarà conservata fino al lancio ufficiale del servizio STIRP, o fino alla revoca del tuo consenso, a seconda di quale evento si verifichi per primo."
+      },
+      {
+        "title": "7. I Tuoi Diritti",
+        "content": "Ai sensi del GDPR, hai il diritto di:\n- Accedere ai tuoi dati personali\n- Rettificare dati inesatti\n- Richiedere la cancellazione dei tuoi dati\n- Revocare il consenso in qualsiasi momento\n- Portabilità dei dati\n- Presentare un reclamo all'autorità di controllo\n\nPer esercitare uno qualsiasi di questi diritti, contattaci a info@stirp.it."
+      },
+      {
+        "title": "8. Cookie",
+        "content": "Questo sito utilizza esclusivamente cookie tecnici necessari al suo funzionamento (preferenza lingua e tema). Non vengono utilizzati cookie di profilazione o analitici."
+      },
+      {
+        "title": "9. Modifiche a Questa Informativa",
+        "content": "Potremmo aggiornare questa informativa sulla privacy di tanto in tanto. Eventuali modifiche saranno pubblicate su questa pagina con una data di revisione aggiornata."
+      }
+    ]
+  },
   "footer": {
     "email": "info@stirp.it",
     "rights": "Tutti i diritti riservati."

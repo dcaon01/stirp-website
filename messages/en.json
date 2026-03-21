@@ -58,6 +58,61 @@
       "cta": "Coming Soon"
     }
   },
+  "waitlist": {
+    "title": "Join the Waitlist",
+    "description": "Leave your email and we'll notify you as soon as STIRP is available.",
+    "placeholder": "your@email.com",
+    "privacy": "I have read and accept the",
+    "privacyLink": "Privacy Policy",
+    "submit": "Join Waitlist",
+    "sending": "Sending...",
+    "successTitle": "You're in!",
+    "successMessage": "We'll let you know when STIRP is ready.",
+    "close": "Close",
+    "error": "Something went wrong. Please try again."
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated: March 2026",
+    "sections": [
+      {
+        "title": "1. Data Controller",
+        "content": "The data controller is STIRP, reachable at info@stirp.it."
+      },
+      {
+        "title": "2. Data Collected",
+        "content": "We collect only the email address you voluntarily provide when joining our waitlist."
+      },
+      {
+        "title": "3. Purpose of Processing",
+        "content": "Your email address is collected solely to notify you when STIRP becomes available and to send you updates related to the service launch."
+      },
+      {
+        "title": "4. Legal Basis",
+        "content": "The processing of your data is based on your explicit consent, given by checking the consent box and submitting the waitlist form (Art. 6(1)(a) GDPR)."
+      },
+      {
+        "title": "5. Data Storage",
+        "content": "Your data is stored in Google Sheets, hosted on Google servers. Google operates under Standard Contractual Clauses (SCCs) for international data transfers. No data is shared with third parties."
+      },
+      {
+        "title": "6. Data Retention",
+        "content": "Your email will be retained until the official launch of the STIRP service, or until you withdraw your consent, whichever comes first."
+      },
+      {
+        "title": "7. Your Rights",
+        "content": "Under the GDPR, you have the right to:\n- Access your personal data\n- Rectify inaccurate data\n- Request deletion of your data\n- Withdraw your consent at any time\n- Data portability\n- Lodge a complaint with a supervisory authority\n\nTo exercise any of these rights, contact us at info@stirp.it."
+      },
+      {
+        "title": "8. Cookies",
+        "content": "This website uses only technical cookies necessary for its functioning (language preference and theme). No profiling or analytics cookies are used."
+      },
+      {
+        "title": "9. Changes to This Policy",
+        "content": "We may update this privacy policy from time to time. Any changes will be posted on this page with an updated revision date."
+      }
+    ]
+  },
   "footer": {
     "email": "info@stirp.it",
     "rights": "All rights reserved."
