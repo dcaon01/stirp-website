@@ -41,7 +41,7 @@ export default function Home() {
       {/* Hero - sticky, stays behind pricing */}
       <div className="h-screen" />
       <section className="sticky top-0 flex h-screen items-center px-4 sm:px-6 -mt-[100vh] z-0 overflow-hidden bg-[#d5d5d5] dark:bg-transparent">
-        <div ref={vantaWrapperRef} className="absolute inset-0 -z-10">
+        <div ref={vantaWrapperRef} className="absolute inset-0 -z-10 blur-[2px]">
           <VantaBackground />
         </div>
         <div
