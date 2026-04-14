@@ -7,6 +7,7 @@ export function VantaBackground() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const effectRef = useRef<any>(null);
   const [isDark, setIsDark] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const update = () =>
@@ -18,6 +19,14 @@ export function VantaBackground() {
       attributeFilter: ["class"],
     });
     return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
   }, []);
 
   const getColors = useCallback(
@@ -36,6 +45,10 @@ export function VantaBackground() {
   }, []);
 
   useEffect(() => {
+    if (isMobile) {
+      cleanup();
+      return;
+    }
     if (effectRef.current) return;
 
     let cancelled = false;
@@ -83,7 +96,7 @@ export function VantaBackground() {
       cancelled = true;
       cleanup();
     };
-  }, [cleanup, getColors]);
+  }, [cleanup, getColors, isMobile]);
 
   useEffect(() => {
     if (!effectRef.current) return;
@@ -94,12 +107,17 @@ export function VantaBackground() {
     });
   }, [isDark, getColors]);
 
+  const mobileGradient = isDark
+    ? "radial-gradient(ellipse at 25% 20%, #9055ff 0%, #5a2fa8 30%, #2a2040 70%, #140a24 100%)"
+    : "radial-gradient(ellipse at 25% 20%, #c9b3ff 0%, #e6d6ff 35%, #f5f0ff 70%, #ffffff 100%)";
+
   return (
     <div className="absolute inset-0 overflow-hidden">
-      <div
-        ref={vantaRef}
-        className="absolute -inset-8 blur-md"
-      />
+      {isMobile ? (
+        <div className="absolute inset-0" style={{ backgroundImage: mobileGradient }} />
+      ) : (
+        <div ref={vantaRef} className="absolute -inset-8 blur-md" />
+      )}
       <div
         className="absolute inset-0"
         style={{
