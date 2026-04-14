@@ -45,7 +45,7 @@ export function VantaBackground() {
 
       const p5Script = document.createElement("script");
       p5Script.src =
-        "https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js";
+        "https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js";
       p5Script.async = true;
 
       await new Promise<void>((resolve) => {
