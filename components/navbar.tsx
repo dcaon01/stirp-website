@@ -18,18 +18,25 @@ export function Navbar() {
         <div className="flex items-center justify-between px-6 py-3 sm:px-10 sm:py-3.5">
           <a href="/" className="flex items-center gap-3 cursor-pointer">
             <Image
-              src="/stirp-logo-root.svg"
+              src="/stirp-logo.svg"
               alt="STIRP"
               width={32}
               height={32}
               className="w-5 h-auto sm:w-6"
             />
             <Image
-              src="/stirp-root.svg"
+              src="/stirp-logo-wordmark-black.svg"
               alt="STIRP"
               width={90}
               height={52}
-              className="dark:invert w-16 h-auto sm:w-20"
+              className="block dark:hidden w-16 h-auto sm:w-20"
+            />
+            <Image
+              src="/stirp-logo-wordmark-white.svg"
+              alt="STIRP"
+              width={90}
+              height={52}
+              className="hidden dark:block w-16 h-auto sm:w-20"
             />
           </a>
 
@@ -45,7 +52,7 @@ export function Navbar() {
             <Button variant="outline" size="sm" className="cursor-pointer text-sm" onClick={() => setDialogOpen(true)}>
               {t("login")}
             </Button>
-            <Button size="sm" className="cursor-pointer text-sm" onClick={() => setDialogOpen(true)}>
+            <Button size="sm" className="cursor-pointer text-sm bg-gradient-aurora text-white hover:opacity-90" onClick={() => setDialogOpen(true)}>
               {t("register")}
             </Button>
           </div>

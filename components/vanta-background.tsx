@@ -10,8 +10,8 @@ export function VantaBackground() {
   const getColors = useCallback(() => {
     const isDark = document.documentElement.classList.contains("dark");
     return isDark
-      ? { color: 0x1a0505, shininess: 35, waveHeight: 15 }
-      : { color: 0xc8b5b5, shininess: 80, waveHeight: 20 };
+      ? { color: 0x9055ff, backgroundColor: 0x2a2040 }
+      : { color: 0x733ff9, backgroundColor: 0xf5f0ff };
   }, []);
 
   const cleanup = useCallback(() => {
@@ -31,7 +31,7 @@ export function VantaBackground() {
 
       const p5Script = document.createElement("script");
       p5Script.src =
-        "https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js";
+        "https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js";
       p5Script.async = true;
 
       await new Promise<void>((resolve) => {
@@ -42,14 +42,15 @@ export function VantaBackground() {
       if (cancelled || !vantaRef.current) return;
 
       // @ts-expect-error - vanta loaded via script
-      const WAVES = (await import("vanta/dist/vanta.waves.min")).default;
+      const TOPOLOGY = (await import("vanta/dist/vanta.topology.min")).default;
 
       if (cancelled || !vantaRef.current) return;
 
-      effectRef.current = WAVES({
+      const c = getColors();
+      effectRef.current = TOPOLOGY({
         el: vantaRef.current,
-        // @ts-expect-error - THREE is global from CDN
-        THREE: window.THREE,
+        // @ts-expect-error - p5 is global from CDN
+        p5: window.p5,
         mouseControls: true,
         touchControls: true,
         gyroControls: false,
@@ -57,11 +58,8 @@ export function VantaBackground() {
         minWidth: 200.0,
         scale: 1.0,
         scaleMobile: 1.0,
-        color: getColors().color,
-        shininess: getColors().shininess,
-        waveHeight: getColors().waveHeight,
-        waveSpeed: 0.75,
-        zoom: 0.85,
+        color: c.color,
+        backgroundColor: c.backgroundColor,
       });
     }
 
@@ -70,7 +68,7 @@ export function VantaBackground() {
     const observer = new MutationObserver(() => {
       if (effectRef.current) {
         const c = getColors();
-        effectRef.current.setOptions({ color: c.color, shininess: c.shininess, waveHeight: c.waveHeight });
+        effectRef.current.setOptions({ color: c.color, backgroundColor: c.backgroundColor });
       }
     });
     observer.observe(document.documentElement, {
@@ -85,5 +83,13 @@ export function VantaBackground() {
     };
   }, [cleanup, getColors]);
 
-  return <div ref={vantaRef} className="absolute inset-0" />;
+  return (
+    <div className="absolute inset-0 overflow-hidden">
+      <div
+        ref={vantaRef}
+        className="absolute -inset-8 blur-md"
+      />
+      <div className="absolute inset-0 bg-background/10" />
+    </div>
+  );
 }

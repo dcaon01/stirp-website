@@ -121,7 +121,11 @@ export function PricingSection() {
                   <div className="mt-8">
                     <Button
                       variant={plan.highlighted ? "default" : "outline"}
-                      className="w-full cursor-pointer"
+                      className={`w-full cursor-pointer ${
+                        plan.highlighted
+                          ? "bg-gradient-aurora text-white hover:opacity-90"
+                          : ""
+                      }`}
                       onClick={() => setDialogOpen(true)}
                     >
                       {t(`${plan.key}.cta`)}
