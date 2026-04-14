@@ -133,7 +133,7 @@ export function WaitlistDialog({
             <Button
               onClick={handleSubmit}
               disabled={!canSubmit || status === "loading"}
-              className="w-full cursor-pointer"
+              className="w-full cursor-pointer bg-gradient-aurora text-white hover:opacity-90"
             >
               {status === "loading" ? t("sending") : t("submit")}
             </Button>

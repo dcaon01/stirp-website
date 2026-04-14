@@ -15,7 +15,7 @@ export default function PrivacyPage() {
   return (
     <div className="relative min-h-screen bg-background">
       <Navbar />
-      <main className="mx-auto max-w-3xl px-6 pt-24 pb-20 sm:px-10">
+      <main className="mx-auto max-w-3xl px-6 pt-36 pb-20 sm:px-10 sm:pt-40">
         <h1 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4">
           {t("title")}
         </h1>

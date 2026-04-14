@@ -1,18 +1,32 @@
 "use client";
 
-import { useEffect, useRef, useCallback } from "react";
+import { useEffect, useRef, useCallback, useState } from "react";
 
 export function VantaBackground() {
   const vantaRef = useRef<HTMLDivElement>(null);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const effectRef = useRef<any>(null);
+  const [isDark, setIsDark] = useState(false);
 
-  const getColors = useCallback(() => {
-    const isDark = document.documentElement.classList.contains("dark");
-    return isDark
-      ? { color: 0x9055ff, backgroundColor: 0x2a2040 }
-      : { color: 0x733ff9, backgroundColor: 0xf5f0ff };
+  useEffect(() => {
+    const update = () =>
+      setIsDark(document.documentElement.classList.contains("dark"));
+    update();
+    const observer = new MutationObserver(update);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+    return () => observer.disconnect();
   }, []);
+
+  const getColors = useCallback(
+    () =>
+      isDark
+        ? { color: 0x9055ff, backgroundColor: 0x2a2040 }
+        : { color: 0x733ff9, backgroundColor: 0xf5f0ff },
+    [isDark]
+  );
 
   const cleanup = useCallback(() => {
     if (effectRef.current) {
@@ -65,23 +79,20 @@ export function VantaBackground() {
 
     init();
 
-    const observer = new MutationObserver(() => {
-      if (effectRef.current) {
-        const c = getColors();
-        effectRef.current.setOptions({ color: c.color, backgroundColor: c.backgroundColor });
-      }
-    });
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["class"],
-    });
-
     return () => {
       cancelled = true;
-      observer.disconnect();
       cleanup();
     };
   }, [cleanup, getColors]);
+
+  useEffect(() => {
+    if (!effectRef.current) return;
+    const c = getColors();
+    effectRef.current.setOptions({
+      color: c.color,
+      backgroundColor: c.backgroundColor,
+    });
+  }, [isDark, getColors]);
 
   return (
     <div className="absolute inset-0 overflow-hidden">
@@ -89,7 +100,14 @@ export function VantaBackground() {
         ref={vantaRef}
         className="absolute -inset-8 blur-md"
       />
-      <div className="absolute inset-0 bg-background/10" />
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundColor: `color-mix(in oklab, var(--background) ${
+            isDark ? 50 : 10
+          }%, transparent)`,
+        }}
+      />
     </div>
   );
 }

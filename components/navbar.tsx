@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { SettingsDropdown } from "@/components/settings-dropdown";
 import { WaitlistDialog } from "@/components/waitlist-dialog";
@@ -9,34 +10,62 @@ import { Button } from "@/components/ui/button";
 
 export function Navbar() {
   const t = useTranslations("nav");
+  const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  const isHome = pathname === "/" || /^\/[a-z]{2}$/.test(pathname);
+
+  useEffect(() => {
+    if (!isHome) {
+      setScrollProgress(1);
+      return;
+    }
+    const onScroll = () => {
+      const p = Math.min(1, Math.max(0, window.scrollY / 220));
+      setScrollProgress(p);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [isHome]);
+
+  const bgOpacity = menuOpen ? 1 : scrollProgress;
 
   return (
     <>
-      <nav className={`animate-slide-down fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${menuOpen ? "bg-background" : ""}`}>
-        <div className="flex items-center justify-between px-6 py-3 sm:px-10 sm:py-3.5">
-          <a href="/" className="flex items-center gap-3 cursor-pointer">
+      <nav
+        className="animate-slide-down fixed top-0 left-0 right-0 z-50 border-b will-change-[background-color,backdrop-filter]"
+        style={{
+          backgroundColor: `color-mix(in oklab, var(--background) ${bgOpacity * 100}%, transparent)`,
+          backdropFilter: `blur(${bgOpacity * 8}px)`,
+          WebkitBackdropFilter: `blur(${bgOpacity * 8}px)`,
+          borderBottomColor: `color-mix(in oklab, var(--border) ${bgOpacity * 100}%, transparent)`,
+        }}
+      >
+        <div className="flex items-center justify-between px-6 py-1 sm:px-10">
+          <a href="/" className="flex items-center gap-3 cursor-pointer h-14 sm:h-20">
             <Image
               src="/stirp-logo.svg"
               alt="STIRP"
               width={32}
               height={32}
-              className="w-5 h-auto sm:w-6"
+              className="w-6 h-auto sm:w-7"
             />
             <Image
               src="/stirp-logo-wordmark-black.svg"
               alt="STIRP"
               width={90}
               height={52}
-              className="block dark:hidden w-16 h-auto sm:w-20"
+              className="block dark:hidden h-8 sm:h-11 w-auto"
             />
             <Image
               src="/stirp-logo-wordmark-white.svg"
               alt="STIRP"
               width={90}
               height={52}
-              className="hidden dark:block w-16 h-auto sm:w-20"
+              className="hidden dark:block h-14 sm:h-20 w-auto"
             />
           </a>
 
