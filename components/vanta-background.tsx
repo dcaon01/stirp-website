@@ -22,11 +22,16 @@ export function VantaBackground() {
   }, []);
 
   useEffect(() => {
-    const mq = window.matchMedia("(max-width: 767px)");
-    const update = () => setIsMobile(mq.matches);
+    const coarse = window.matchMedia("(pointer: coarse)");
+    const narrow = window.matchMedia("(max-width: 767px)");
+    const update = () => setIsMobile(coarse.matches || narrow.matches);
     update();
-    mq.addEventListener("change", update);
-    return () => mq.removeEventListener("change", update);
+    coarse.addEventListener("change", update);
+    narrow.addEventListener("change", update);
+    return () => {
+      coarse.removeEventListener("change", update);
+      narrow.removeEventListener("change", update);
+    };
   }, []);
 
   const getColors = useCallback(
