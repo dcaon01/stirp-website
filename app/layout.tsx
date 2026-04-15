@@ -1,5 +1,6 @@
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
+import { cookies } from "next/headers";
 import { Comfortaa } from "next/font/google";
 
 import "./globals.css";
@@ -84,9 +85,11 @@ export default async function RootLayout({
 }) {
   const locale = await getLocale();
   const messages = await getMessages();
+  const theme = (await cookies()).get("theme")?.value;
+  const themeClass = theme === "light" ? "" : "dark";
 
   return (
-    <html lang={locale} className={`dark ${comfortaa.variable}`}>
+    <html lang={locale} className={`${themeClass} ${comfortaa.variable}`.trim()}>
       <head>
         <link
           rel="preload"
