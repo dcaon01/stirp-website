@@ -87,6 +87,14 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} className={`dark ${comfortaa.variable}`}>
+      <head>
+        <link
+          rel="preload"
+          as="script"
+          href="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body className="antialiased">
         <NextIntlClientProvider messages={messages}>
           {children}

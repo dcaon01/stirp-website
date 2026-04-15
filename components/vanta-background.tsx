@@ -86,9 +86,9 @@ export function VantaBackground() {
         }
       ).requestIdleCallback;
       if (ric) {
-        idleHandle = ric(cb, { timeout: 2000 });
+        idleHandle = ric(cb, { timeout: 400 });
       } else {
-        idleHandle = window.setTimeout(cb, 300);
+        idleHandle = window.setTimeout(cb, 0);
       }
     };
     schedule(() => {

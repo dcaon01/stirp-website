@@ -65,7 +65,7 @@ export function Navbar() {
               alt="STIRP"
               width={90}
               height={52}
-              className="hidden dark:block h-14 sm:h-20 w-auto"
+              className="hidden dark:block h-10 sm:h-14 w-auto pt-0.5"
             />
           </a>
 
@@ -78,7 +78,7 @@ export function Navbar() {
             >
               {t("pricing")}
             </button>
-            <Button variant="outline" size="sm" className="cursor-pointer text-sm" onClick={() => setDialogOpen(true)}>
+            <Button size="sm" className="cursor-pointer text-sm" onClick={() => setDialogOpen(true)}>
               {t("login")}
             </Button>
             <Button size="sm" className="cursor-pointer text-sm bg-gradient-aurora text-white hover:opacity-90" onClick={() => setDialogOpen(true)}>
@@ -118,7 +118,6 @@ export function Navbar() {
               {t("pricing")}
             </button>
             <Button
-              variant="outline"
               size="sm"
               className="cursor-pointer text-xs w-full"
               onClick={() => { setMenuOpen(false); setDialogOpen(true); }}
