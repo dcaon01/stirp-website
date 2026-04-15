@@ -39,13 +39,14 @@ export function VantaBackground() {
     if (effectRef.current) return;
 
     let cancelled = false;
+    let idleHandle: number | undefined;
 
     async function init() {
       if (typeof window === "undefined") return;
 
       const p5Script = document.createElement("script");
       p5Script.src =
-        "https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js";
+        "https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js";
       p5Script.async = true;
 
       await new Promise<void>((resolve) => {
@@ -77,10 +78,34 @@ export function VantaBackground() {
       });
     }
 
-    init();
+    const schedule = (cb: () => void) => {
+      if (typeof window === "undefined") return;
+      const ric = (
+        window as typeof window & {
+          requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
+        }
+      ).requestIdleCallback;
+      if (ric) {
+        idleHandle = ric(cb, { timeout: 2000 });
+      } else {
+        idleHandle = window.setTimeout(cb, 300);
+      }
+    };
+    schedule(() => {
+      if (!cancelled) init();
+    });
 
     return () => {
       cancelled = true;
+      if (idleHandle !== undefined) {
+        const cic = (
+          window as typeof window & {
+            cancelIdleCallback?: (h: number) => void;
+          }
+        ).cancelIdleCallback;
+        if (cic) cic(idleHandle);
+        else clearTimeout(idleHandle);
+      }
       cleanup();
     };
   }, [cleanup, getColors]);
