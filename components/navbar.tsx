@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { SettingsDropdown } from "@/components/settings-dropdown";
 import { WaitlistDialog } from "@/components/waitlist-dialog";
@@ -11,6 +11,16 @@ import { Button } from "@/components/ui/button";
 export function Navbar() {
   const t = useTranslations("nav");
   const pathname = usePathname();
+  const router = useRouter();
+
+  const goToPricing = () => {
+    const el = document.getElementById("pricing");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    } else {
+      router.push("/#pricing");
+    }
+  };
   const [menuOpen, setMenuOpen] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -73,7 +83,7 @@ export function Navbar() {
           <div className="hidden sm:flex items-center gap-4">
             <SettingsDropdown />
             <button
-              onClick={() => document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" })}
+              onClick={goToPricing}
               className="text-sm text-muted-foreground transition-colors hover:text-foreground tracking-wider cursor-pointer"
             >
               {t("pricing")}
@@ -110,7 +120,7 @@ export function Navbar() {
           <div className="flex flex-col gap-3 px-6 pb-5 border-b border-border">
             <button
               onClick={() => {
-                document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" });
+                goToPricing();
                 setMenuOpen(false);
               }}
               className="text-sm text-muted-foreground transition-colors hover:text-foreground tracking-wider cursor-pointer text-left py-2"
