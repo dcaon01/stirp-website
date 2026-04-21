@@ -1,13 +1,12 @@
 "use client";
 
-import { useEffect, useRef, useCallback, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export function VantaBackground() {
   const vantaRef = useRef<HTMLDivElement>(null);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const effectRef = useRef<any>(null);
   const [isDark, setIsDark] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const update = () =>
@@ -22,45 +21,11 @@ export function VantaBackground() {
   }, []);
 
   useEffect(() => {
-    const coarse = window.matchMedia("(pointer: coarse)");
-    const narrow = window.matchMedia("(max-width: 767px)");
-    const update = () => setIsMobile(coarse.matches || narrow.matches);
-    update();
-    coarse.addEventListener("change", update);
-    narrow.addEventListener("change", update);
-    return () => {
-      coarse.removeEventListener("change", update);
-      narrow.removeEventListener("change", update);
-    };
-  }, []);
-
-  const getColors = useCallback(
-    () =>
-      isDark
-        ? { color: 0x9055ff, backgroundColor: 0x2a2040 }
-        : { color: 0x733ff9, backgroundColor: 0xf5f0ff },
-    [isDark]
-  );
-
-  const cleanup = useCallback(() => {
-    if (effectRef.current) {
-      effectRef.current.destroy();
-      effectRef.current = null;
-    }
-  }, []);
-
-  useEffect(() => {
-    if (isMobile) {
-      cleanup();
-      return;
-    }
-    if (effectRef.current) return;
-
     let cancelled = false;
     let idleHandle: number | undefined;
 
     async function init() {
-      if (typeof window === "undefined") return;
+      if (typeof window === "undefined" || effectRef.current) return;
 
       const p5Script = document.createElement("script");
       p5Script.src =
@@ -79,7 +44,7 @@ export function VantaBackground() {
 
       if (cancelled || !vantaRef.current) return;
 
-      const c = getColors();
+      const dark = document.documentElement.classList.contains("dark");
       effectRef.current = TOPOLOGY({
         el: vantaRef.current,
         // @ts-expect-error - p5 is global from CDN
@@ -91,13 +56,12 @@ export function VantaBackground() {
         minWidth: 200.0,
         scale: 1.0,
         scaleMobile: 1.0,
-        color: c.color,
-        backgroundColor: c.backgroundColor,
+        color: dark ? 0x9055ff : 0x733ff9,
+        backgroundColor: dark ? 0x2a2040 : 0xf5f0ff,
       });
     }
 
     const schedule = (cb: () => void) => {
-      if (typeof window === "undefined") return;
       const ric = (
         window as typeof window & {
           requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
@@ -124,38 +88,32 @@ export function VantaBackground() {
         if (cic) cic(idleHandle);
         else clearTimeout(idleHandle);
       }
-      cleanup();
+      if (effectRef.current) {
+        effectRef.current.destroy();
+        effectRef.current = null;
+      }
     };
-  }, [cleanup, getColors, isMobile]);
+  }, []);
 
   useEffect(() => {
     if (!effectRef.current) return;
-    const c = getColors();
     effectRef.current.setOptions({
-      color: c.color,
-      backgroundColor: c.backgroundColor,
+      color: isDark ? 0x9055ff : 0x733ff9,
+      backgroundColor: isDark ? 0x2a2040 : 0xf5f0ff,
     });
-  }, [isDark, getColors]);
-
-  const mobileGradient = isDark
-    ? "radial-gradient(ellipse at 25% 20%, #9055ff 0%, #5a2fa8 30%, #2a2040 70%, #140a24 100%)"
-    : "radial-gradient(ellipse at 25% 20%, #c9b3ff 0%, #e6d6ff 35%, #f5f0ff 70%, #ffffff 100%)";
+  }, [isDark]);
 
   return (
     <div className="absolute inset-0 overflow-hidden">
-      {isMobile ? (
-        <div className="absolute inset-0" style={{ backgroundImage: mobileGradient }} />
-      ) : (
-        <div ref={vantaRef} className="absolute inset-0" />
-      )}
+      <div ref={vantaRef} className="absolute inset-0" />
       <div
         className="absolute inset-0"
         style={{
           backgroundColor: `color-mix(in oklab, var(--background) ${
             isDark ? 50 : 10
           }%, transparent)`,
-          backdropFilter: isMobile ? undefined : "blur(12px)",
-          WebkitBackdropFilter: isMobile ? undefined : "blur(12px)",
+          backdropFilter: "blur(12px)",
+          WebkitBackdropFilter: "blur(12px)",
         }}
       />
     </div>
