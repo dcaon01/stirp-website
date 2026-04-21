@@ -146,7 +146,7 @@ export function VantaBackground() {
       {isMobile ? (
         <div className="absolute inset-0" style={{ backgroundImage: mobileGradient }} />
       ) : (
-        <div ref={vantaRef} className="absolute -inset-8 blur-md" />
+        <div ref={vantaRef} className="absolute inset-0" />
       )}
       <div
         className="absolute inset-0"
@@ -154,6 +154,8 @@ export function VantaBackground() {
           backgroundColor: `color-mix(in oklab, var(--background) ${
             isDark ? 50 : 10
           }%, transparent)`,
+          backdropFilter: isMobile ? undefined : "blur(12px)",
+          WebkitBackdropFilter: isMobile ? undefined : "blur(12px)",
         }}
       />
     </div>

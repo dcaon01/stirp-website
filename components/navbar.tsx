@@ -136,7 +136,7 @@ export function Navbar() {
             </Button>
             <Button
               size="sm"
-              className="cursor-pointer text-xs w-full"
+              className="cursor-pointer text-xs w-full bg-gradient-aurora text-white hover:opacity-90"
               onClick={() => { setMenuOpen(false); setDialogOpen(true); }}
             >
               {t("register")}
