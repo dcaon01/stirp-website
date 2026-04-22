@@ -25,7 +25,11 @@ export function VantaBackground() {
     let idleHandle: number | undefined;
 
     async function init() {
-      if (typeof window === "undefined" || effectRef.current) return;
+      if (typeof window === "undefined") return;
+      if (effectRef.current) {
+        effectRef.current.destroy();
+        effectRef.current = null;
+      }
 
       const p5Script = document.createElement("script");
       p5Script.src =
@@ -33,6 +37,10 @@ export function VantaBackground() {
       p5Script.async = true;
 
       await new Promise<void>((resolve) => {
+        if ((window as typeof window & { p5?: unknown }).p5) {
+          resolve();
+          return;
+        }
         p5Script.onload = () => resolve();
         document.head.appendChild(p5Script);
       });
@@ -44,7 +52,6 @@ export function VantaBackground() {
 
       if (cancelled || !vantaRef.current) return;
 
-      const dark = document.documentElement.classList.contains("dark");
       effectRef.current = TOPOLOGY({
         el: vantaRef.current,
         // @ts-expect-error - p5 is global from CDN
@@ -56,8 +63,8 @@ export function VantaBackground() {
         minWidth: 200.0,
         scale: 1.0,
         scaleMobile: 1.0,
-        color: dark ? 0x9055ff : 0x733ff9,
-        backgroundColor: dark ? 0x2a2040 : 0xf5f0ff,
+        color: isDark ? 0x9055ff : 0x733ff9,
+        backgroundColor: isDark ? 0x2a2040 : 0xf5f0ff,
       });
     }
 
@@ -93,14 +100,6 @@ export function VantaBackground() {
         effectRef.current = null;
       }
     };
-  }, []);
-
-  useEffect(() => {
-    if (!effectRef.current) return;
-    effectRef.current.setOptions({
-      color: isDark ? 0x9055ff : 0x733ff9,
-      backgroundColor: isDark ? 0x2a2040 : 0xf5f0ff,
-    });
   }, [isDark]);
 
   return (
