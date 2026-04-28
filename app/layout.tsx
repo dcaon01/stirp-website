@@ -16,7 +16,7 @@ const siteUrl = "https://stirp.it";
 
 export const metadata: Metadata = {
   title: {
-    default: "STIRP — Software Design Tool",
+    default: "STIRP | Software Design Tool",
     template: "%s | STIRP",
   },
   description:
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     alternateLocale: "it_IT",
     url: siteUrl,
     siteName: "STIRP",
-    title: "STIRP — Software Design Tool",
+    title: "STIRP | Software Design Tool",
     description:
       "Create UML diagrams, ER diagrams, flowcharts, and more. Design at your rules.",
     images: [
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "STIRP — Software Design Tool",
+    title: "STIRP | Software Design Tool",
     description:
       "Create UML diagrams, ER diagrams, flowcharts, and more. Design at your rules.",
     images: ["/strip-logo-png.png"],
