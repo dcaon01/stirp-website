@@ -1,31 +1,33 @@
-"use client";
-
 import { useEffect, useState } from "react";
-import Image from "next/image";
-import { usePathname, useRouter } from "next/navigation";
-import { useTranslations } from "next-intl";
+import { navigate } from "vike/client/router";
+import {
+  useTranslations,
+  useLocale,
+  useUrlWithoutLocale,
+  localizePath,
+} from "@/i18n";
 import { SettingsDropdown } from "@/components/settings-dropdown";
 import { WaitlistDialog } from "@/components/waitlist-dialog";
 import { Button } from "@/components/ui/button";
 
 export function Navbar() {
   const t = useTranslations("nav");
-  const pathname = usePathname();
-  const router = useRouter();
+  const locale = useLocale();
+  const urlWithoutLocale = useUrlWithoutLocale();
 
   const goToPricing = () => {
     const el = document.getElementById("pricing");
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });
     } else {
-      router.push("/#pricing");
+      void navigate(`${localizePath("/", locale)}#pricing`);
     }
   };
   const [menuOpen, setMenuOpen] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
 
-  const isHome = pathname === "/" || /^\/[a-z]{2}$/.test(pathname);
+  const isHome = urlWithoutLocale === "/";
 
   useEffect(() => {
     if (!isHome) {
@@ -55,22 +57,25 @@ export function Navbar() {
         }}
       >
         <div className="flex items-center justify-between px-6 py-1 sm:px-10">
-          <a href="/" className="flex items-center gap-3 cursor-pointer h-14 sm:h-20">
-            <Image
+          <a
+            href={localizePath("/", locale)}
+            className="flex items-center gap-3 cursor-pointer h-14 sm:h-20"
+          >
+            <img
               src="/stirp-logo.svg"
               alt="STIRP"
               width={32}
               height={32}
               className="w-6 h-auto sm:w-7"
             />
-            <Image
+            <img
               src="/stirp-logo-wordmark-black.svg"
               alt="STIRP"
               width={90}
               height={52}
               className="block dark:hidden h-8 sm:h-11 w-auto"
             />
-            <Image
+            <img
               src="/stirp-logo-wordmark-white.svg"
               alt="STIRP"
               width={90}

@@ -1,17 +1,15 @@
-"use client";
-
 import { useState, useRef, useEffect } from "react";
-import { useLocale } from "next-intl";
-import { useRouter } from "next/navigation";
+import { navigate } from "vike/client/router";
+import { useLocale, useLocalizedPath, type Locale } from "@/i18n";
 
-const locales = [
-  { code: "it", label: "Italiano" },
+const localeOptions: { code: Locale; label: string }[] = [
   { code: "en", label: "English" },
+  { code: "it", label: "Italiano" },
 ];
 
 export function SettingsDropdown() {
   const locale = useLocale();
-  const router = useRouter();
+  const localizedPath = useLocalizedPath();
   const [open, setOpen] = useState(false);
   const [dark, setDark] = useState(true);
   const ref = useRef<HTMLDivElement>(null);
@@ -30,9 +28,13 @@ export function SettingsDropdown() {
     return () => document.removeEventListener("mousedown", handleClick);
   }, []);
 
-  function switchLocale(newLocale: string) {
-    document.cookie = `locale=${newLocale};path=/;max-age=31536000`;
-    router.refresh();
+  function switchLocale(newLocale: Locale) {
+    if (newLocale === locale) {
+      setOpen(false);
+      return;
+    }
+    setOpen(false);
+    void navigate(localizedPath(newLocale));
   }
 
   function toggleTheme() {
@@ -64,7 +66,7 @@ export function SettingsDropdown() {
           <p className="px-2 py-1 text-xs text-muted-foreground tracking-wider uppercase">
             Language
           </p>
-          {locales.map((l) => (
+          {localeOptions.map((l) => (
             <button
               key={l.code}
               onClick={() => switchLocale(l.code)}

@@ -1,4 +1,9 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+
+/* Tailwind v4 has no JS config; tell it which dirs to scan for classes. */
+@source "../pages";
+@source "../components";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -388,4 +393,19 @@
 
 .animate-scale-in {
   animation: scale-in 0.25s ease-out both;
+}
+
+/* ── Reduced motion ─────────────────────────────── *
+ * Respect users who ask for less motion: disable entrance
+ * animations. The Vanta background self-disables its engine
+ * and falls back to a static gradient (see vanta-background.tsx).
+ */
+@media (prefers-reduced-motion: reduce) {
+  .animate-slide-down,
+  .animate-slide-up,
+  .animate-slide-right,
+  .animate-fade-in,
+  .animate-scale-in {
+    animation: none !important;
+  }
 }

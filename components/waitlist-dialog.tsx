@@ -1,7 +1,5 @@
-"use client";
-
 import { useState, useEffect, useRef } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale, localizePath } from "@/i18n";
 import { Button } from "@/components/ui/button";
 
 function isValidEmail(email: string) {
@@ -16,6 +14,7 @@ export function WaitlistDialog({
   onClose: () => void;
 }) {
   const t = useTranslations("waitlist");
+  const locale = useLocale();
   const [email, setEmail] = useState("");
   const [accepted, setAccepted] = useState(false);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -45,7 +44,7 @@ export function WaitlistDialog({
     if (!canSubmit) return;
     setStatus("loading");
     try {
-      const scriptUrl = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL;
+      const scriptUrl = import.meta.env.VITE_GOOGLE_SCRIPT_URL;
       if (scriptUrl) {
         await fetch(scriptUrl, {
           method: "POST",
@@ -119,7 +118,7 @@ export function WaitlistDialog({
               <span className="text-xs text-muted-foreground leading-relaxed">
                 {t("privacy")}{" "}
                 <a
-                  href="/privacy"
+                  href={localizePath("/privacy", locale)}
                   target="_blank"
                   className="text-primary underline underline-offset-2 hover:text-primary/80"
                 >
