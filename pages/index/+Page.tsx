@@ -1,16 +1,19 @@
-"use client";
-
-import { useTranslations } from "next-intl";
 import { useEffect, useRef } from "react";
+import { useConfig } from "vike-react/useConfig";
+import { useTranslations } from "@/i18n";
 import { Navbar } from "@/components/navbar";
 import { PricingSection } from "@/components/pricing-section";
-import { VantaBackground } from "@/components/vanta-background";
+import { MeshBackground } from "@/components/mesh-background";
 
-export default function Home() {
+export default function Page() {
   const t = useTranslations("hero");
   const tf = useTranslations("footer");
+
+  // Localized SEO description (title stays the global brand default).
+  useConfig()({ description: t("subtitle") });
+
   const heroContentRef = useRef<HTMLDivElement>(null);
-  const vantaWrapperRef = useRef<HTMLDivElement>(null);
+  const fadeRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     function handleScroll() {
@@ -25,11 +28,15 @@ export default function Home() {
         heroContentRef.current.style.opacity = String(opacity);
       }
 
-      if (vantaWrapperRef.current) {
-        vantaWrapperRef.current.style.opacity = String(1 - progress);
+      // Fade the hero into the page background as you scroll, so it seamlessly
+      // becomes the color of the pricing section below — always darkening in
+      // dark mode, and never a jarring brightness jump in either theme.
+      if (fadeRef.current) {
+        fadeRef.current.style.opacity = String(progress);
       }
     }
 
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -41,9 +48,15 @@ export default function Home() {
       {/* Hero - sticky, stays behind pricing */}
       <div className="h-screen" />
       <section className="sticky top-0 flex h-screen items-center px-4 sm:px-6 -mt-[100vh] z-0 overflow-hidden bg-[#d5d5d5] dark:bg-transparent">
-        <div ref={vantaWrapperRef} className="absolute inset-0 -z-10">
-          <VantaBackground />
+        <div className="absolute inset-0 -z-10">
+          <MeshBackground />
         </div>
+        {/* Scroll-linked veil: fades the hero to the page background color. */}
+        <div
+          ref={fadeRef}
+          className="pointer-events-none absolute inset-0 -z-10 bg-background"
+          style={{ opacity: 0 }}
+        />
         <div
           ref={heroContentRef}
           className="w-full max-w-6xl lg:mx-auto will-change-transform"
@@ -52,7 +65,7 @@ export default function Home() {
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight">
               {t("title")}
             </h1>
-            <p className="text-base sm:text-lg text-muted-foreground tracking-wide leading-relaxed">
+            <p className="text-base sm:text-lg text-foreground/70 tracking-wide leading-relaxed">
               {t("subtitle")}
             </p>
           </div>
@@ -73,7 +86,7 @@ export default function Home() {
               {tf("email")}
             </a>
             <p className="text-sm text-muted-foreground tracking-wider">
-              &copy; {new Date().getFullYear()} STIRP. {tf("rights")}
+              &copy; {new Date().getFullYear()} Sephiro. {tf("rights")}
             </p>
           </div>
         </footer>

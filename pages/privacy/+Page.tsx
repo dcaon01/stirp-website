@@ -1,16 +1,18 @@
-"use client";
-
-import { useTranslations } from "next-intl";
+import { useConfig } from "vike-react/useConfig";
+import { useTranslations } from "@/i18n";
 import { Navbar } from "@/components/navbar";
 
-export default function PrivacyPage() {
+export default function Page() {
   const t = useTranslations("privacy");
   const tf = useTranslations("footer");
 
-  const sections = t.raw("sections") as {
-    title: string;
-    content: string;
-  }[];
+  useConfig()({
+    title: `${t("title")} | Sephiro`,
+    description:
+      "Privacy Policy for Sephiro — Learn how we handle your data when you join our waitlist.",
+  });
+
+  const sections = t.raw<{ title: string; content: string }[]>("sections");
 
   return (
     <div className="relative min-h-screen bg-background">
@@ -46,7 +48,7 @@ export default function PrivacyPage() {
             {tf("email")}
           </a>
           <p className="text-sm text-muted-foreground tracking-wider">
-            &copy; {new Date().getFullYear()} STIRP. {tf("rights")}
+            &copy; {new Date().getFullYear()} Sephiro. {tf("rights")}
           </p>
         </div>
       </footer>

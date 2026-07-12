@@ -1,10 +1,15 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+
+/* Tailwind v4 has no JS config; tell it which dirs to scan for classes. */
+@source "../pages";
+@source "../components";
 
 @custom-variant dark (&:is(.dark *));
 
 /*
  * ─────────────────────────────────────────────────
- *  STIRP — Software modeling palette
+ *  Sephiro — Software modeling palette
  *  Dark-first · Neutral surfaces · Violet accent
  *
  *  Brand colors:
@@ -388,4 +393,75 @@
 
 .animate-scale-in {
   animation: scale-in 0.25s ease-out both;
+}
+
+/* ── Mesh gradient background (pure CSS, GPU-composited, ~0 KB JS) ────
+ * Two blurred multi-radial gradient layers rotating slowly in opposite
+ * directions → a flowing, Stripe-like colored mesh. Only transform
+ * animates, so it's cheap and smooth on desktop and mobile.
+ */
+.mesh-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  /* Isolate compositing so the blur/animation never repaints the page. */
+  contain: strict;
+}
+
+.mesh-layer {
+  position: absolute;
+  inset: -30%;
+  filter: blur(60px) saturate(1.1);
+  will-change: transform;
+  background:
+    radial-gradient(40% 40% at 20% 30%, color-mix(in oklab, #9055ff 85%, transparent), transparent 70%),
+    radial-gradient(40% 40% at 80% 25%, color-mix(in oklab, #3b5afe 85%, transparent), transparent 70%),
+    radial-gradient(45% 45% at 65% 80%, color-mix(in oklab, #d44090 80%, transparent), transparent 72%),
+    radial-gradient(40% 40% at 30% 75%, color-mix(in oklab, #e8654a 75%, transparent), transparent 72%);
+}
+
+.mesh-layer-a {
+  opacity: 0.6;
+  animation: mesh-spin-a 28s linear infinite;
+}
+
+.mesh-layer-b {
+  opacity: 0.5;
+  animation: mesh-spin-b 34s linear infinite;
+}
+
+/* Slightly calmer over the near-white light-mode ground. */
+:root:not(.dark) .mesh-layer-a { opacity: 0.5; }
+:root:not(.dark) .mesh-layer-b { opacity: 0.4; }
+
+@keyframes mesh-spin-a {
+  0% { transform: rotate(0deg) scale(1.1); }
+  100% { transform: rotate(360deg) scale(1.1); }
+}
+
+@keyframes mesh-spin-b {
+  0% { transform: rotate(360deg) scale(1.2); }
+  100% { transform: rotate(0deg) scale(1.2); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mesh-layer-a,
+  .mesh-layer-b {
+    animation: none !important;
+  }
+}
+
+/* ── Reduced motion ─────────────────────────────── *
+ * Respect users who ask for less motion: disable entrance
+ * animations. The Vanta background self-disables its engine
+ * and falls back to a static gradient (see vanta-background.tsx).
+ */
+@media (prefers-reduced-motion: reduce) {
+  .animate-slide-down,
+  .animate-slide-up,
+  .animate-slide-right,
+  .animate-fade-in,
+  .animate-scale-in {
+    animation: none !important;
+  }
 }
