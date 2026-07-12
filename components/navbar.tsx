@@ -73,7 +73,7 @@ export function Navbar() {
             <span
               role="img"
               aria-label="Sephiro"
-              className="inline-block h-6 bg-foreground sm:h-7"
+              className="inline-block h-10 bg-foreground sm:h-12"
               style={{
                 width: "auto",
                 aspectRatio: "248.25 / 75.75",
@@ -94,7 +94,7 @@ export function Navbar() {
             <SettingsDropdown />
             <button
               onClick={goToPricing}
-              className="text-sm text-muted-foreground transition-colors hover:text-foreground tracking-wider cursor-pointer"
+              className="text-sm text-foreground/70 transition-colors hover:text-foreground tracking-wider cursor-pointer"
             >
               {t("pricing")}
             </button>
@@ -133,7 +133,7 @@ export function Navbar() {
                 goToPricing();
                 setMenuOpen(false);
               }}
-              className="text-sm text-muted-foreground transition-colors hover:text-foreground tracking-wider cursor-pointer text-left py-2"
+              className="text-sm text-foreground/70 transition-colors hover:text-foreground tracking-wider cursor-pointer text-left py-2"
             >
               {t("pricing")}
             </button>

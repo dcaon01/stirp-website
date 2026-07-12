@@ -65,7 +65,7 @@ export default function Page() {
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight">
               {t("title")}
             </h1>
-            <p className="text-base sm:text-lg text-muted-foreground tracking-wide leading-relaxed">
+            <p className="text-base sm:text-lg text-foreground/70 tracking-wide leading-relaxed">
               {t("subtitle")}
             </p>
           </div>

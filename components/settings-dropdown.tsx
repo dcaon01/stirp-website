@@ -52,7 +52,7 @@ export function SettingsDropdown() {
     <div ref={ref} className="relative">
       <button
         onClick={() => setOpen(!open)}
-        className="flex items-center justify-center w-8 h-8 rounded-lg text-muted-foreground transition-colors hover:text-foreground hover:bg-muted cursor-pointer"
+        className="flex items-center justify-center w-8 h-8 rounded-lg text-foreground/70 transition-colors hover:text-foreground cursor-pointer"
         aria-label="Settings"
       >
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
