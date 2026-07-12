@@ -395,6 +395,78 @@
   animation: scale-in 0.25s ease-out both;
 }
 
+/* ── Aurora background (pure CSS, GPU-composited, ~0 KB JS) ──────────
+ * Large blurred brand-color blobs drifting slowly. Replaces the heavy
+ * Vanta/three/p5 background. Only transform/opacity animate → cheap.
+ */
+.aurora {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  /* Isolate compositing so the blur/animation never repaints the page. */
+  contain: strict;
+}
+
+.aurora-blob {
+  position: absolute;
+  width: 60vw;
+  height: 60vw;
+  max-width: 900px;
+  max-height: 900px;
+  border-radius: 9999px;
+  filter: blur(90px);
+  will-change: transform;
+  opacity: 0.55;
+}
+
+.dark .aurora-blob {
+  opacity: 0.4;
+}
+
+.aurora-blob-a {
+  top: -20%;
+  left: -10%;
+  background: radial-gradient(circle at center, #9055ff 0%, transparent 68%);
+  animation: aurora-drift-a 22s ease-in-out infinite;
+}
+
+.aurora-blob-b {
+  top: 10%;
+  right: -15%;
+  background: radial-gradient(circle at center, #d44090 0%, transparent 68%);
+  animation: aurora-drift-b 26s ease-in-out infinite;
+}
+
+.aurora-blob-c {
+  bottom: -25%;
+  left: 20%;
+  background: radial-gradient(circle at center, #3b5afe 0%, transparent 68%);
+  animation: aurora-drift-c 30s ease-in-out infinite;
+}
+
+@keyframes aurora-drift-a {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(12vw, 8vh, 0) scale(1.15); }
+}
+
+@keyframes aurora-drift-b {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1.1); }
+  50% { transform: translate3d(-10vw, 12vh, 0) scale(0.95); }
+}
+
+@keyframes aurora-drift-c {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(8vw, -10vh, 0) scale(1.2); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora-blob-a,
+  .aurora-blob-b,
+  .aurora-blob-c {
+    animation: none !important;
+  }
+}
+
 /* ── Reduced motion ─────────────────────────────── *
  * Respect users who ask for less motion: disable entrance
  * animations. The Vanta background self-disables its engine

@@ -1,12 +1,9 @@
 import { useEffect, useRef } from "react";
-import { ClientOnly } from "vike-react/ClientOnly";
 import { useConfig } from "vike-react/useConfig";
 import { useTranslations } from "@/i18n";
 import { Navbar } from "@/components/navbar";
 import { PricingSection } from "@/components/pricing-section";
-// Static import is safe: the component's body only runs on the client
-// (ClientOnly strips it server-side), and three.js/p5 are lazy-imported inside.
-import VantaBackground from "@/components/vanta-background";
+import { AuroraBackground } from "@/components/aurora-background";
 
 export default function Page() {
   const t = useTranslations("hero");
@@ -48,15 +45,7 @@ export default function Page() {
       <div className="h-screen" />
       <section className="sticky top-0 flex h-screen items-center px-4 sm:px-6 -mt-[100vh] z-0 overflow-hidden bg-[#d5d5d5] dark:bg-transparent">
         <div ref={vantaWrapperRef} className="absolute inset-0 -z-10">
-          <ClientOnly
-            fallback={
-              <div className="absolute inset-0 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-subtle" />
-              </div>
-            }
-          >
-            <VantaBackground />
-          </ClientOnly>
+          <AuroraBackground />
         </div>
         <div
           ref={heroContentRef}
