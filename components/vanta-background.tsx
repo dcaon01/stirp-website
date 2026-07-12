@@ -49,6 +49,17 @@ function ensureP5(): Promise<void> {
   return p5Promise;
 }
 
+// Vanta's UMD dist bundles register their factory on window.VANTA[NAME]
+// (module.exports isn't the factory under Vite's ESM interop).
+function getVantaFactory(name: "NET" | "TOPOLOGY") {
+  const VANTA = (window as unknown as { VANTA?: Record<string, unknown> }).VANTA;
+  const factory = VANTA?.[name];
+  if (typeof factory !== "function") {
+    throw new Error(`Vanta ${name} not available on window.VANTA`);
+  }
+  return factory as (opts: Record<string, unknown>) => { destroy: () => void };
+}
+
 function readMode(): VantaMode {
   try {
     const q = new URLSearchParams(window.location.search).get("vanta");
@@ -116,9 +127,10 @@ export default function VantaBackground() {
       if (mode === "topology") {
         await ensureP5();
         if (!wantRun()) return null;
-        // @ts-expect-error — no type declarations for vanta dist bundles
-        const TOPOLOGY = (await import("vanta/dist/vanta.topology.min")).default;
+        // Importing the dist bundle registers the effect on window.VANTA.
+        await import("vanta/dist/vanta.topology.min");
         if (!wantRun()) return null;
+        const TOPOLOGY = getVantaFactory("TOPOLOGY");
         return TOPOLOGY({
           el,
           p5: (window as unknown as { p5: unknown }).p5,
@@ -133,12 +145,12 @@ export default function VantaBackground() {
           backgroundColor: isDark ? COLORS.bg.dark : COLORS.bg.light,
         }) as VantaEffect;
       }
-      // webgl (three.js) — Vanta NET
+      // webgl (three.js) — Vanta NET (uses modern BufferGeometry, three-compatible)
       const THREE = await import("three");
       if (!wantRun()) return null;
-      // @ts-expect-error — no type declarations for vanta dist bundles
-      const NET = (await import("vanta/dist/vanta.net.min")).default;
+      await import("vanta/dist/vanta.net.min");
       if (!wantRun()) return null;
+      const NET = getVantaFactory("NET");
       return NET({
         el,
         THREE,
