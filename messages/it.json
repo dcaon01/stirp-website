@@ -7,7 +7,7 @@
   },
   "hero": {
     "title": "Il software design, alle tue regole",
-    "subtitle": "Crea modelli personalizzati, definisci il tuo stile, imposta le tue regole. STIRP si adatta a te.",
+    "subtitle": "Crea modelli personalizzati, definisci il tuo stile, imposta le tue regole. Sephiro si adatta a te.",
     "comingSoon": "In arrivo",
     "watchVideo": "Guarda il demo"
   },
@@ -60,14 +60,14 @@
   },
   "waitlist": {
     "title": "Iscriviti alla lista d'attesa",
-    "description": "Lascia la tua email e ti avviseremo non appena STIRP sarà disponibile.",
+    "description": "Lascia la tua email e ti avviseremo non appena Sephiro sarà disponibile.",
     "placeholder": "tua@email.com",
     "privacy": "Ho letto e accetto la",
     "privacyLink": "Privacy Policy",
     "submit": "Iscriviti",
     "sending": "Invio in corso...",
     "successTitle": "Sei dentro!",
-    "successMessage": "Ti faremo sapere quando STIRP sarà pronto.",
+    "successMessage": "Ti faremo sapere quando Sephiro sarà pronto.",
     "close": "Chiudi",
     "error": "Qualcosa è andato storto. Riprova."
   },
@@ -77,7 +77,7 @@
     "sections": [
       {
         "title": "1. Titolare del Trattamento",
-        "content": "Il titolare del trattamento è STIRP, raggiungibile all'indirizzo info@stirp.it."
+        "content": "Il titolare del trattamento è Sephiro, raggiungibile all'indirizzo info@sephiro.app."
       },
       {
         "title": "2. Dati Raccolti",
@@ -85,7 +85,7 @@
       },
       {
         "title": "3. Finalità del Trattamento",
-        "content": "Il tuo indirizzo email viene raccolto al solo scopo di notificarti quando STIRP sarà disponibile e per inviarti aggiornamenti relativi al lancio del servizio."
+        "content": "Il tuo indirizzo email viene raccolto al solo scopo di notificarti quando Sephiro sarà disponibile e per inviarti aggiornamenti relativi al lancio del servizio."
       },
       {
         "title": "4. Base Giuridica",
@@ -97,11 +97,11 @@
       },
       {
         "title": "6. Durata della Conservazione",
-        "content": "La tua email sarà conservata fino al lancio ufficiale del servizio STIRP, o fino alla revoca del tuo consenso, a seconda di quale evento si verifichi per primo."
+        "content": "La tua email sarà conservata fino al lancio ufficiale del servizio Sephiro, o fino alla revoca del tuo consenso, a seconda di quale evento si verifichi per primo."
       },
       {
         "title": "7. I Tuoi Diritti",
-        "content": "Ai sensi del GDPR, hai il diritto di:\n- Accedere ai tuoi dati personali\n- Rettificare dati inesatti\n- Richiedere la cancellazione dei tuoi dati\n- Revocare il consenso in qualsiasi momento\n- Portabilità dei dati\n- Presentare un reclamo all'autorità di controllo\n\nPer esercitare uno qualsiasi di questi diritti, contattaci a info@stirp.it."
+        "content": "Ai sensi del GDPR, hai il diritto di:\n- Accedere ai tuoi dati personali\n- Rettificare dati inesatti\n- Richiedere la cancellazione dei tuoi dati\n- Revocare il consenso in qualsiasi momento\n- Portabilità dei dati\n- Presentare un reclamo all'autorità di controllo\n\nPer esercitare uno qualsiasi di questi diritti, contattaci a info@sephiro.app."
       },
       {
         "title": "8. Cookie",
@@ -114,7 +114,7 @@
     ]
   },
   "footer": {
-    "email": "info@stirp.it",
+    "email": "info@sephiro.app",
     "rights": "Tutti i diritti riservati."
   }
 }

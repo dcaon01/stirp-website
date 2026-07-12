@@ -6,7 +6,7 @@ import {
   type Locale,
 } from "@/i18n/locales";
 
-const SITE_URL = (import.meta.env.VITE_SITE_URL || "https://stirp.it").replace(
+const SITE_URL = (import.meta.env.VITE_SITE_URL || "https://sephiro.app").replace(
   /\/$/,
   "",
 );
@@ -71,15 +71,15 @@ export default function Head() {
 
       {/* Open Graph / Twitter defaults */}
       <meta property="og:type" content="website" />
-      <meta property="og:site_name" content="STIRP" />
+      <meta property="og:site_name" content="Sephiro" />
       <meta property="og:url" content={canonical} />
       <meta
         property="og:locale"
         content={locale === "it" ? "it_IT" : "en_US"}
       />
-      <meta property="og:image" content={`${SITE_URL}/stirp-logo.png`} />
+      <meta property="og:image" content={`${SITE_URL}/sephiro-logo.png`} />
       <meta name="twitter:card" content="summary" />
-      <meta name="twitter:image" content={`${SITE_URL}/stirp-logo.png`} />
+      <meta name="twitter:image" content={`${SITE_URL}/sephiro-logo.png`} />
     </>
   );
 }

@@ -28,7 +28,7 @@ type VantaEffect = { destroy: () => void };
 
 const P5_SRC = "https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js";
 
-// STIRP brand colors reused by both engines.
+// Sephiro brand colors reused by both engines.
 const COLORS = {
   line: { dark: 0x9055ff, light: 0x733ff9 },
   bg: { dark: 0x2a2040, light: 0xf5f0ff },

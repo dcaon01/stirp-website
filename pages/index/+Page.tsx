@@ -87,7 +87,7 @@ export default function Page() {
               {tf("email")}
             </a>
             <p className="text-sm text-muted-foreground tracking-wider">
-              &copy; {new Date().getFullYear()} STIRP. {tf("rights")}
+              &copy; {new Date().getFullYear()} Sephiro. {tf("rights")}
             </p>
           </div>
         </footer>

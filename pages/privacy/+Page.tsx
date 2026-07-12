@@ -7,9 +7,9 @@ export default function Page() {
   const tf = useTranslations("footer");
 
   useConfig()({
-    title: `${t("title")} | STIRP`,
+    title: `${t("title")} | Sephiro`,
     description:
-      "Privacy Policy for STIRP — Learn how we handle your data when you join our waitlist.",
+      "Privacy Policy for Sephiro — Learn how we handle your data when you join our waitlist.",
   });
 
   const sections = t.raw<{ title: string; content: string }[]>("sections");
@@ -48,7 +48,7 @@ export default function Page() {
             {tf("email")}
           </a>
           <p className="text-sm text-muted-foreground tracking-wider">
-            &copy; {new Date().getFullYear()} STIRP. {tf("rights")}
+            &copy; {new Date().getFullYear()} Sephiro. {tf("rights")}
           </p>
         </div>
       </footer>

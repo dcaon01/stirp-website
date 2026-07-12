@@ -59,29 +59,19 @@ export function Navbar() {
         <div className="flex items-center justify-between px-6 py-1 sm:px-10">
           <a
             href={localizePath("/", locale)}
-            className="flex items-center gap-3 cursor-pointer h-14 sm:h-20"
+            className="flex items-center gap-2.5 cursor-pointer h-14 sm:h-20"
           >
             <img
-              src="/stirp-logo.svg"
-              alt="STIRP"
+              src="/sephiro-logo.svg"
+              alt="Sephiro"
               width={32}
               height={32}
               className="w-6 h-auto sm:w-7"
             />
-            <img
-              src="/stirp-logo-wordmark-black.svg"
-              alt="STIRP"
-              width={90}
-              height={52}
-              className="block dark:hidden h-8 sm:h-11 w-auto"
-            />
-            <img
-              src="/stirp-logo-wordmark-white.svg"
-              alt="STIRP"
-              width={90}
-              height={52}
-              className="hidden dark:block h-10 sm:h-14 w-auto pt-0.5"
-            />
+            {/* Text wordmark (brand font). Swap for a designed SVG wordmark when available. */}
+            <span className="select-none text-xl font-semibold tracking-wide text-foreground sm:text-2xl">
+              Sephiro
+            </span>
           </a>
 
           {/* Desktop */}

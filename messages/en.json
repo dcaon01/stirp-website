@@ -7,7 +7,7 @@
   },
   "hero": {
     "title": "Software design, at your rules",
-    "subtitle": "Create custom models, define your style, set your own rules. STIRP adapts to you.",
+    "subtitle": "Create custom models, define your style, set your own rules. Sephiro adapts to you.",
     "comingSoon": "Coming Soon",
     "watchVideo": "Watch demo"
   },
@@ -60,14 +60,14 @@
   },
   "waitlist": {
     "title": "Join the Waitlist",
-    "description": "Leave your email and we'll notify you as soon as STIRP is available.",
+    "description": "Leave your email and we'll notify you as soon as Sephiro is available.",
     "placeholder": "your@email.com",
     "privacy": "I have read and accept the",
     "privacyLink": "Privacy Policy",
     "submit": "Join Waitlist",
     "sending": "Sending...",
     "successTitle": "You're in!",
-    "successMessage": "We'll let you know when STIRP is ready.",
+    "successMessage": "We'll let you know when Sephiro is ready.",
     "close": "Close",
     "error": "Something went wrong. Please try again."
   },
@@ -77,7 +77,7 @@
     "sections": [
       {
         "title": "1. Data Controller",
-        "content": "The data controller is STIRP, reachable at info@stirp.it."
+        "content": "The data controller is Sephiro, reachable at info@sephiro.app."
       },
       {
         "title": "2. Data Collected",
@@ -85,7 +85,7 @@
       },
       {
         "title": "3. Purpose of Processing",
-        "content": "Your email address is collected solely to notify you when STIRP becomes available and to send you updates related to the service launch."
+        "content": "Your email address is collected solely to notify you when Sephiro becomes available and to send you updates related to the service launch."
       },
       {
         "title": "4. Legal Basis",
@@ -97,11 +97,11 @@
       },
       {
         "title": "6. Data Retention",
-        "content": "Your email will be retained until the official launch of the STIRP service, or until you withdraw your consent, whichever comes first."
+        "content": "Your email will be retained until the official launch of the Sephiro service, or until you withdraw your consent, whichever comes first."
       },
       {
         "title": "7. Your Rights",
-        "content": "Under the GDPR, you have the right to:\n- Access your personal data\n- Rectify inaccurate data\n- Request deletion of your data\n- Withdraw your consent at any time\n- Data portability\n- Lodge a complaint with a supervisory authority\n\nTo exercise any of these rights, contact us at info@stirp.it."
+        "content": "Under the GDPR, you have the right to:\n- Access your personal data\n- Rectify inaccurate data\n- Request deletion of your data\n- Withdraw your consent at any time\n- Data portability\n- Lodge a complaint with a supervisory authority\n\nTo exercise any of these rights, contact us at info@sephiro.app."
       },
       {
         "title": "8. Cookies",
@@ -114,7 +114,7 @@
     ]
   },
   "footer": {
-    "email": "info@stirp.it",
+    "email": "info@sephiro.app",
     "rights": "All rights reserved."
   }
 }

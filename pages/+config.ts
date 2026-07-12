@@ -4,9 +4,9 @@ import vikeReact from "vike-react/config";
 // Global default config (pages can override title/description/lang).
 // https://vike.dev/config
 const config: Config = {
-  title: "STIRP | Software Design Tool",
+  title: "Sephiro | Software Design Tool",
   description:
-    "STIRP is a software design tool for creating UML diagrams, ER diagrams, flowcharts, request-response diagrams, graph database schemas, and more. Design at your rules.",
+    "Sephiro is a software design tool for creating UML diagrams, ER diagrams, flowcharts, request-response diagrams, graph database schemas, and more. Design at your rules.",
 
   // Static-generate every page to HTML (deploy anywhere: S3/CDN/static host).
   // https://vike.dev/prerender
