@@ -68,10 +68,25 @@ export function Navbar() {
               height={32}
               className="w-6 h-auto sm:w-7"
             />
-            {/* Text wordmark (brand font). Swap for a designed SVG wordmark when available. */}
-            <span className="select-none text-xl font-semibold tracking-wide text-foreground sm:text-2xl">
-              Sephiro
-            </span>
+            {/* Wordmark: masked so it takes the theme foreground color
+                (white on dark, dark on light) automatically. */}
+            <span
+              role="img"
+              aria-label="Sephiro"
+              className="inline-block h-6 bg-foreground sm:h-7"
+              style={{
+                width: "auto",
+                aspectRatio: "248.25 / 75.75",
+                WebkitMaskImage: "url(/sephiro-wordmark.svg)",
+                maskImage: "url(/sephiro-wordmark.svg)",
+                WebkitMaskRepeat: "no-repeat",
+                maskRepeat: "no-repeat",
+                WebkitMaskPosition: "left center",
+                maskPosition: "left center",
+                WebkitMaskSize: "contain",
+                maskSize: "contain",
+              }}
+            />
           </a>
 
           {/* Desktop */}
