@@ -356,13 +356,14 @@
   animation: slide-up 0.8s ease-out both;
 }
 
+/* Transform-only (no opacity) so the hero text — the LCP element — is painted
+   at full opacity from the first frame. A fade-in here made Lighthouse fail to
+   detect an LCP (NO_LCP). */
 @keyframes slide-right {
   from {
-    opacity: 0;
     transform: translateX(-40px);
   }
   to {
-    opacity: 1;
     transform: translateX(0);
   }
 }
@@ -445,6 +446,19 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .mesh-layer-a,
+  .mesh-layer-b {
+    animation: none !important;
+  }
+}
+
+/* Mobile: the two big blurred layers rotating forever are expensive to paint
+   on phones (slow FCP, high Total Blocking Time). Freeze them and shrink the
+   blur — the mesh looks nearly identical but costs a fraction. */
+@media (max-width: 640px) {
+  .mesh-layer {
+    filter: blur(45px) saturate(1.1);
+  }
   .mesh-layer-a,
   .mesh-layer-b {
     animation: none !important;
