@@ -52,9 +52,9 @@
   --secondary: oklch(0.935 0.020 310);
   --secondary-foreground: oklch(0.25 0.04 290);
 
-  /* Muted */
+  /* Muted — body text matches the hero subtitle (foreground at 70%) */
   --muted: oklch(0.945 0.010 290);
-  --muted-foreground: oklch(0.43 0.015 290);
+  --muted-foreground: color-mix(in oklab, var(--foreground) 70%, transparent);
 
   /* Accent */
   --accent: oklch(0.920 0.020 290);
@@ -134,9 +134,9 @@
   --secondary: #252525;
   --secondary-foreground: oklch(0.90 0 0);
 
-  /* Muted */
+  /* Muted — body text matches the hero subtitle (foreground at 70%) */
   --muted: #232323;
-  --muted-foreground: oklch(0.545 0 0);
+  --muted-foreground: color-mix(in oklab, var(--foreground) 70%, transparent);
 
   /* Accent — hover / active / selection */
   --accent: #2e2e2e;
@@ -235,6 +235,11 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+  /* Body copy reads one step softer than headings — same color as the hero
+     subtitle. Any explicit text-* utility still wins over this. */
+  p {
+    color: var(--muted-foreground);
   }
   html {
     @apply font-sans;
